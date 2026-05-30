@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Node Styling */
+.node {
+  transition: background-color 0.1s ease-out, border 0.1s ease-out;
+}
+
+/* Animation states for yielding mechanism.
+  We use vanilla CSS animations triggered by DOM manipulation 
+  to prevent React from re-rendering the entire grid on every single tick.
+*/
+.node-visited {
+  animation: visitedAnimation 1.2s ease-out forwards;
+}
+
+.node-path {
+  animation: pathAnimation 0.5s ease-out forwards;
+}
+
+.node-wall {
+  background-color: #1e293b !important;
+  border-color: #1e293b !important;
+  animation: popWall 0.3s ease-out forwards;
+}
+
+.node-heavy {
+  background-color: #f59e0b !important;
+  border-color: #d97706 !important;
+  border-radius: 30%;
+  transform: scale(0.85);
+}
+
+@keyframes visitedAnimation {
+  0% { transform: scale(0.3); background-color: #93c5fd; border-radius: 100%; }
+  50% { background-color: #3b82f6; }
+  100% { transform: scale(1); background-color: #60a5fa; border-color: #3b82f6; }
+}
+
+@keyframes pathAnimation {
+  0% { transform: scale(0.6); background-color: #fef08a; border-radius: 50%; }
+  50% { background-color: #eab308; }
+  100% { transform: scale(1); background-color: #eab308; border-color: #ca8a04; }
+}
+
+@keyframes popWall {
+  0% { transform: scale(0.5); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
